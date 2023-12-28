@@ -1,19 +1,19 @@
 import ListItem from "./ListItem";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 
 function List() {
-  const [arr, setArr] = useState([
-    { id: nanoid(), name: "Vasia" },
-    { id: nanoid(), name: "Piter" },
-    { id: nanoid(), name: "Kolia" },
-  ]);
+  const [arr, setArr] = useState(
+    JSON.parse(localStorage.getItem("arr")) || [
+      { id: nanoid(), name: "Vasia" },
+      { id: nanoid(), name: "Piter" },
+      { id: nanoid(), name: "Kolia" },
+    ]
+  );
   const [item, setItem] = useState("");
-  const [isHello, setIsHello] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("Arr", JSON.stringify(arr));
-    console.log("componentDidUpdate");
+    localStorage.setItem("arr", JSON.stringify(arr));
   }, [arr]);
 
   const onHandleClick = (item) => {
@@ -42,12 +42,6 @@ function List() {
     setArr(updatedNameList);
   };
 
-  useLayoutEffect(() => {
-    console.log("hello");
-  }, [isHello]);
-  const onHandleSayHello = () => {
-    setIsHello(!isHello);
-  };
   return (
     <ul>
       <input
@@ -63,8 +57,6 @@ function List() {
         <ListItem arr={arr} onDeleteClick={onDeleteClick} />
       )}
       <button onClick={() => onHandleClick(item)}>Add one</button>
-      <button onClick={onHandleSayHello}>Say hello</button>
-      {isHello ? <p>Hello</p> : null}
     </ul>
   );
 }

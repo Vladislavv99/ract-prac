@@ -1,3 +1,9 @@
+ul {
+  list-style: none;
+}
+input {
+  margin-right: 15px;
+}
 .App {
   text-align: center;
 }
@@ -44,3 +50,4 @@ button{
   cursor: pointer;
   margin: 10px;
 }
+

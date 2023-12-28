@@ -1,15 +1,12 @@
-// import List from "./List";
-// import MyClassComponent from "./MyClassComponent";
-import TestUseReduserComponent from "./TestUseReduserComponent";
+import List from "./List";
+
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <List /> */}
-        {/* <MyClassComponent /> */}
-        <TestUseReduserComponent />
+        <List />
       </header>
     </div>
   );

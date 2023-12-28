@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.no-item{
+  margin: 25px 0;
+}
+button{
+  cursor: pointer;
+  margin: 10px;
+}

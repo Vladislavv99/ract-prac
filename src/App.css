@@ -8,6 +8,15 @@ input {
   text-align: center;
 }
 
+.todo.completed{
+  text-decoration: line-through;
+}
+
+
+select{
+  margin-bottom: 20px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -1,13 +1,14 @@
 import ListItem from "./ListItem";
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
+import { Context } from "./Context";
 
 function List() {
   const [arr, setArr] = useState(
     JSON.parse(localStorage.getItem("arr")) || [
-      { id: nanoid(), name: "Vasia" },
-      { id: nanoid(), name: "Piter" },
-      { id: nanoid(), name: "Kolia" },
+      { id: nanoid(), name: "Vasia", completed: false },
+      { id: nanoid(), name: "Piter", completed: false },
+      { id: nanoid(), name: "Kolia", completed: false },
     ]
   );
   const [item, setItem] = useState("");
@@ -21,7 +22,7 @@ function List() {
       alert("Input can not be empty");
       return;
     }
-    const updatedArr = [...arr, { id: nanoid(), name: item }];
+    const updatedArr = [...arr, { id: nanoid(), name: item, completed: false }];
     setArr(updatedArr);
     setItem("");
   };
@@ -37,27 +38,57 @@ function List() {
     }
   };
 
-  const onDeleteClick = (id) => {
-    const updatedNameList = arr.filter((name) => name.id !== id);
-    setArr(updatedNameList);
+  const deleteItem = (id) => {
+    setArr(arr.filter((name) => name.id !== id));
+  };
+
+  const toggleTodo = (id) => {
+    setArr(
+      arr.map((item) => {
+        if (item.id === id) {
+          item.completed = !item.completed;
+        }
+        return item;
+      })
+    );
+  };
+
+  const onSelectChange = (e) => {
+    if (e.target.value === "active") {
+      const filteredArr = arr.filter((todo) => todo.completed !== true);
+      setArr(filteredArr);
+    }
   };
 
   return (
-    <ul>
-      <input
-        type="text"
-        onKeyDown={onClickEnter}
-        onChange={onHandleChange}
-        value={item}
-      />
-      {arr.length === 0 ? "" : <p>{arr.length}</p>}
-      {arr.length === 0 ? (
-        <p className="no-item">No item in list</p>
-      ) : (
-        <ListItem arr={arr} onDeleteClick={onDeleteClick} />
-      )}
-      <button onClick={() => onHandleClick(item)}>Add one</button>
-    </ul>
+    <Context.Provider
+      value={{
+        toggleTodo,
+        deleteItem,
+      }}
+    >
+      <div>
+        <input
+          type="text"
+          onKeyDown={onClickEnter}
+          onChange={onHandleChange}
+          value={item}
+        />
+        <ul>
+          <select onChange={onSelectChange}>
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="done">Done</option>
+          </select>
+          {arr.length === 0 ? (
+            <p className="no-item">No item in list</p>
+          ) : (
+            arr.map((item) => <ListItem key={item.id} {...item} />)
+          )}
+          <button onClick={() => onHandleClick(item)}>Add one</button>
+        </ul>
+      </div>
+    </Context.Provider>
   );
 }
 

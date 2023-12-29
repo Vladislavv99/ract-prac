@@ -1,22 +1,26 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { Context } from "./Context";
 
-function ListItem(props) {
-  const [check, setCheck] = useState([{ name: "", checked: false }]);
+function ListItem({ id, name, completed }) {
+  const { toggleTodo, deleteItem } = useContext(Context);
 
-  const handleChecked = (e) => {
-    if (e.target.checked) {
-      setCheck(!check);
-    } else {
-      setCheck(!check);
-    }
-  };
+  const cls = ["todo"];
 
-  return props.arr.map((item) => (
-    <li key={item.id}>
-      <input type="checkbox" onChange={handleChecked} name={item.name} />
-      {item.name}
-      <button onClick={() => props.onDeleteClick(item.id)}>Delete</button>
+  if (completed) {
+    cls.push("completed");
+  }
+
+  return (
+    <li className={cls.join(" ")}>
+      <input
+        type="checkbox"
+        checked={completed}
+        onChange={() => toggleTodo(id)}
+        name={name}
+      />
+      {name}
+      <button onClick={() => deleteItem(id)}>Delete</button>
     </li>
-  ));
+  );
 }
 export default ListItem;

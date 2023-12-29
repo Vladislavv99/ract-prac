@@ -12,6 +12,7 @@ function List() {
     ]
   );
   const [item, setItem] = useState("");
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     localStorage.setItem("arr", JSON.stringify(arr));
@@ -53,13 +54,16 @@ function List() {
     );
   };
 
-  const onSelectChange = (e) => {
-    if (e.target.value === "active") {
-      const filteredArr = arr.filter((todo) => todo.completed !== true);
-      setArr(filteredArr);
+  const filteredList = () => {
+    switch (filter) {
+      case "active":
+        return arr.filter((todo) => !todo.completed);
+      case "done":
+        return arr.filter((todo) => todo.completed);
+      default:
+        return arr;
     }
   };
-
   return (
     <Context.Provider
       value={{
@@ -75,15 +79,15 @@ function List() {
           value={item}
         />
         <ul>
-          <select onChange={onSelectChange}>
+          <select onChange={(e) => setFilter(e.target.value)}>
             <option value="all">All</option>
             <option value="active">Active</option>
             <option value="done">Done</option>
           </select>
-          {arr.length === 0 ? (
+          {filteredList().length === 0 ? (
             <p className="no-item">No item in list</p>
           ) : (
-            arr.map((item) => <ListItem key={item.id} {...item} />)
+            filteredList().map((item) => <ListItem key={item.id} {...item} />)
           )}
           <button onClick={() => onHandleClick(item)}>Add one</button>
         </ul>

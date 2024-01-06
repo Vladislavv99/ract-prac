@@ -73,6 +73,7 @@ function List() {
     >
       <div>
         <input
+          className="input-todo"
           type="text"
           onKeyDown={onClickEnter}
           onChange={onHandleChange}

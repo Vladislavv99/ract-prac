@@ -1,6 +1,10 @@
 ul {
   list-style: none;
 }
+
+li{
+  list-style: none;
+}
 input {
   margin-right: 15px;
 }
@@ -12,6 +16,25 @@ input {
   text-decoration: line-through;
 }
 
+.input-todo{
+  margin: 10px 0;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+.peshka{
+  margin: 0 10px;
+  font-size: 20px;
+}
+
+.li-item{
+  border: 2px white solid;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
 
 select{
   margin-bottom: 20px;

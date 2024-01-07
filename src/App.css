@@ -12,6 +12,10 @@ input {
   text-align: center;
 }
 
+.select-list{
+  margin-top: 0;
+}
+
 .todo.completed{
   text-decoration: line-through;
 }
@@ -30,14 +34,14 @@ input {
   font-size: 20px;
 }
 
-.li-item{
+.todo{
   border: 2px white solid;
   border-radius: 10px;
   margin-bottom: 10px;
 }
 
 select{
-  margin-bottom: 20px;
+  margin: 0;
 }
 
 .App-logo {

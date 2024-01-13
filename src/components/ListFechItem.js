@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Context } from "../Context";
+import { Link } from "react-router-dom";
 
 const ListFetchItem = ({ id, title, description, checked }) => {
   const { deleteTodo, toggleTodo, completed } = useContext(Context);
@@ -27,6 +28,9 @@ const ListFetchItem = ({ id, title, description, checked }) => {
       >
         Delete
       </button>
+      <Link className="link-about-todo" to={`${id}`}>
+        About
+      </Link>
     </li>
   );
 };

@@ -82,7 +82,32 @@ select{
 
 .active{
   color: aquamarine;
- text-decoration: underline;
+}
+
+.link-in-not-found{
+  border: 2px white solid;
+  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+  width: 150px;
+  color: white;
+  text-align: center;
+}
+
+.link-about-todo{
+  font-size: 13px;
+  border: 2px white solid;
+    padding: 3px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.info-single-todo{
+  font-size: 20px;
+  color: rgb(207, 192, 185);
 }
 
 .App-link {

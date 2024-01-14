@@ -110,6 +110,10 @@ select{
   color: rgb(207, 192, 185);
 }
 
+.edit-inputs{
+  height: 20px;
+}
+
 .App-link {
   color: #61dafb;
 }

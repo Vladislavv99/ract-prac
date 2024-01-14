@@ -7,6 +7,7 @@ import AboutPages from "./pages/AboutPages";
 import NotFoundPage from "./pages/NotFoundPage";
 import Layout from "./components/Layouts/Layour";
 import SingleTodo from "./pages/SingleTodo";
+import EditPage from "./pages/EditPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/todos" element={<ListFetch />} />
         <Route path="/todos/:id" element={<SingleTodo />} />
+        <Route path="/todos/edit/:id" element={<EditPage />} />
         <Route path="/about" element={<AboutPages />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

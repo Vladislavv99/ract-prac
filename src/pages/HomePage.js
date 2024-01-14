@@ -7,7 +7,7 @@ const HomePage = () => {
     >
       <h1>Walcome to your todo list</h1>
       <Link className="link-in-not-found" to="/todos">
-        Go to todo list
+        Let's start
       </Link>
     </div>
   );

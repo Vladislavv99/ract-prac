@@ -11,7 +11,6 @@ const SingleTodo = () => {
     queryFn: () => getSingleTodo(id),
   });
 
-  console.log(data);
   return isFetching ? (
     <p>Loading...</p>
   ) : (
@@ -30,6 +29,9 @@ const SingleTodo = () => {
       </p>
       <Link className="link-in-not-found" to="/todos">
         Go to todo list
+      </Link>{" "}
+      <Link className="link-in-not-found" to={`/todos/edit/${id}`}>
+        Edit
       </Link>
     </div>
   );
